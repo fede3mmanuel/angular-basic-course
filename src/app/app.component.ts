@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Product } from './models/product.models';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +9,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'midudev-app';
+  http= inject(HttpClient);
+  products: Product[] = [];
 
   changeTitle()
   {
     this.title = 'changed';
+  }
+
+  ngOnInit() {
+    this.http.get<Product[]>('https://api.escuelajs.co/api/v1/products')
+    .subscribe((data) => {
+      this.products = data;
+    })
   }
 }

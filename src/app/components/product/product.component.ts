@@ -11,6 +11,6 @@ export class ProductComponent {
     id: 0,
     title: '',
     price: 0,
-    imagenes: [],
+    images: [],
   };
 }
